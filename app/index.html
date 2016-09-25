@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Chat room</title>
+    <link rel="stylesheet" href="/app/css/style.css">
+  </head>
+  <body>
+
+    <p>Add name</p>
+    <form class="chat-user" action="index.html" method="post">
+      <input class="chat-user__text" type="text" name="name" value="">
+      <button class="chat-user__send" type="button" name="button">Submit</button>
+    </form>
+
+    <p>Add text</p>
+    <form class="chat-form" action="index.html" method="post">
+      <input class="chat-form__text" type="text" name="name" value="">
+      <button class="chat-form__send" type="button" name="button">Submit</button>
+    </form>
+
+    <div id="root">Hi, I'm #root</div>
+
+    <script src="https://fb.me/react-15.2.1.js"></script>
+    <script src="https://fb.me/react-dom-15.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/EventEmitter/5.1.0/EventEmitter.min.js"></script>
+    <script type="text/babel" src="/app/app.js"></script>
+
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://localhost:8888/');
+      socket.on('messages', function(data){
+        insertMessage(data);
+      });
+
+      $('.chat-user__send').on('click', function(){
+        var input = $('.chat-user__text');
+        var message = input.val();
+        socket.emit('join', message);
+        input.val('');
+      });
+
+      $('.chat-form__send').on('click', function(){
+        var input = $('.chat-form__text');
+        var message = input.val();
+        socket.emit('messages', message);
+        input.val('');
+      });
+
+      function insertMessage(data){
+        //add data to chat
+        console.log(data);
+      }
+
+    </script>
+
+  </body>
+</html>

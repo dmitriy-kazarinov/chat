@@ -1,0 +1,17 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Test socket ",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Dmitry Dulin",
+  "license": "ISC"
+}
