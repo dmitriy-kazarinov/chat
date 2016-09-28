@@ -98,13 +98,13 @@ let Messages = React.createClass({
   }
 });
 
-// socket.on('messages', function(data){
-//   let updateMessages = newMessages.push(data);
-//   this.setState({messages: updateMessages});
-// });
-
 let App = React.createClass({
   getInitialState: function() {
+    socket.on('messages', function(data){
+      console.log(data);
+      // let updateMessages = newMessages.push(data);
+      // this.setState({messages: updateMessages});
+    });
     return {
       messages: messages
     };
